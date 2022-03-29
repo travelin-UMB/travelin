@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingPageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +55,9 @@ Route::prefix('admin')
         // Route::resource('transaction', 'TransactionController');
     });
 Auth::routes(['verify' => true]);
+
+Route::get('/', [LandingPageController::class, 'index']);
+Route::get('featured_destination', [LandingPageController::class, 'city']);
+Route::get('our_package', [LandingPageController::class, 'our_package']);
+Route::get('my_package', [LandingPageController::class, 'my_package']);
+Route::get('detail/{city}/{name}/{id}', [LandingPageController::class, 'package_detail'])->name('package_detail');
