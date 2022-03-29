@@ -32,6 +32,7 @@
 	                      <option value="">Bengkulu</option>
 	                      <option value="">Lombok</option>
 	                      <option value="">Yogyakarta</option>
+	                      <option value="">Srilanka</option>
 	                    </select>
 	                  </div>
 		              </div>
