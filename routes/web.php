@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TravelPackagesController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\LandingPageController;
 
 
@@ -44,15 +47,14 @@ use App\Http\Controllers\LandingPageController;
 
 
 Route::prefix('admin')
-    ->namespace('Admin')
     ->middleware(['auth','admin'])
     ->group(function() {
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
 
-        // Route::resource('travel-package', 'TravelPackageController');
-        // Route::resource('gallery', 'GalleryController');
-        // Route::resource('transaction', 'TransactionController');
+        Route::resource('travel-package', TravelPackagesController::class);
+        Route::resource('gallery', GalleryController::class);
+        Route::resource('transaction', TransactionsController::class);
     });
 Auth::routes(['verify' => true]);
 
