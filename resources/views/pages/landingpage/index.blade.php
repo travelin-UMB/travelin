@@ -79,21 +79,24 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="destination-slider owl-carousel ftco-animate">
+                        @foreach ($data as $item)
                         <div class="item">
                             <div class="destination">
                                 <a href="{{ url('our_package') }}" class="img d-flex justify-content-center align-items-center"
-                                    style="background-image: url(landingpage/images/destination-1.jpg);">
+                                    style="background-image: url({{$item['gambar']}});">
                                     <div class="icon d-flex justify-content-center align-items-center">
                                         <span class="icon-search2"></span>
                                     </div>
                                 </a>
                                 <div class="text p-3">
-                                    <h3><a href="{{ url('our_package') }}">Bali</a></h3>
-                                    <span class="listing">15 Listing</span>
+                                    <h3><a href="{{ url('our_package') }}">{{$item['judul']}}</a></h3>
+                                    {{-- <span class="listing">15 Listing</span> --}}
                                 </div>
                             </div>
+                            
                         </div>
-                        <div class="item">
+                        @endforeach
+                        {{-- <div class="item">
                             <div class="destination">
                                 <a href="#" class="img d-flex justify-content-center align-items-center"
                                     style="background-image: url(landingpage/images/destination-2.jpg);">
@@ -162,7 +165,7 @@
                                     <span class="listing">3 Listing</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

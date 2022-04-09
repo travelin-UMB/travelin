@@ -51,7 +51,42 @@
           </div>
           <div class="col-lg-9">
           	<div class="row">
-			  <div class="col-md-4 ftco-animate">
+                @foreach ($data as $item)
+                  <div class="col-md-4 ftco-animate">
+                    <div class="destination">
+                        <a href="#" class="img img-2 d-flex justify-content-center align-items-center"
+                            style="background-image: url({{$item['gambar']}});">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <span class="icon-search2"></span>
+                            </div>
+                        </a>
+                        <div class="text p-3">
+                            <div>
+                                <div>
+                                    
+                                    <h3><a href="#">{{$item['judul']}}</a></h3>
+                                   
+                                    {{-- @foreach ($price as $item) --}}
+                                    <span class="price">{{$item['harga']}}</span>     
+                                    {{-- @endforeach --}}
+                                   
+                                </div>
+
+                            </div>
+                            <p>{{$item['deskripsi']}}</p>
+                            <p class="days"><span>subjudul</span>
+                            </p>
+                            <hr>
+                            <p class="bottom-area d-flex">
+                                <span><i class="icon-map-o"></i> Lombok</span>
+                                <span class="ml-auto"><a href="#">Discover</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                
+			  {{-- <div class="col-md-4 ftco-animate">
                     <div class="destination">
                         <a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}" class="img img-2 d-flex justify-content-center align-items-center"
                             style="background-image: url(landingpage/images/destination-1.jpg);">
@@ -159,7 +194,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
           	</div>
         
           </div> <!-- .col-md-8 -->
