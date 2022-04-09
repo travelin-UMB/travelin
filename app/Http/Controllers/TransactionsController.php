@@ -17,8 +17,8 @@ class TransactionsController extends Controller
         ])->get();
 
         return view('pages.admin.transaction.index', [
-            // 'items' => $items
-            dd($items)
+            'items' => $items
+            // dd($items)
         ]);
     }
 

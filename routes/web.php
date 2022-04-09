@@ -6,6 +6,7 @@ use App\Http\Controllers\TravelPackagesController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\ScrapeController;
 
 
 /*
@@ -63,3 +64,5 @@ Route::get('featured_destination', [LandingPageController::class, 'city']);
 Route::get('our_package', [LandingPageController::class, 'our_package']);
 Route::get('my_package', [LandingPageController::class, 'my_package']);
 Route::get('detail/{city}/{name}/{id}', [LandingPageController::class, 'package_detail'])->name('package_detail');
+
+Route::get('/scrape', [ScrapeController::class, 'scrape']);

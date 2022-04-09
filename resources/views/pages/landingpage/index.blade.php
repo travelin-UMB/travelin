@@ -79,21 +79,24 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="destination-slider owl-carousel ftco-animate">
+                        @foreach ($data as $item)
                         <div class="item">
                             <div class="destination">
                                 <a href="{{ url('our_package') }}" class="img d-flex justify-content-center align-items-center"
-                                    style="background-image: url(landingpage/images/destination-1.jpg);">
+                                    style="background-image: url({{$item['gambar']}});">
                                     <div class="icon d-flex justify-content-center align-items-center">
                                         <span class="icon-search2"></span>
                                     </div>
                                 </a>
                                 <div class="text p-3">
-                                    <h3><a href="{{ url('our_package') }}">Bali</a></h3>
-                                    <span class="listing">15 Listing</span>
+                                    <h3><a href="{{ url('our_package') }}">{{$item['judul']}}</a></h3>
+                                    {{-- <span class="listing">15 Listing</span> --}}
                                 </div>
                             </div>
+                            
                         </div>
-                        <div class="item">
+                        @endforeach
+                        {{-- <div class="item">
                             <div class="destination">
                                 <a href="#" class="img d-flex justify-content-center align-items-center"
                                     style="background-image: url(landingpage/images/destination-2.jpg);">
@@ -162,7 +165,7 @@
                                     <span class="listing">3 Listing</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -180,35 +183,110 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                @foreach($data as $item)
-                    <div class="col-xs-3 col-sm-3 col-md-3 ftco-animate">
-                        <div class="destination">
-                            <a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}" class="img img-2 d-flex justify-content-center align-items-center"
-                                style="background-image: url('{{asset('storage/'.$item->gallery->image)}}');">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <div>
-                                    <div>
-                                        <h3><a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}">{{  $item->title }}</a></h3>
-                                        <span class="price">@currency( $item->price )</span>
-                                        
-                                    </div>
-
-                                </div>
-                                <p>{{ $item->featured_event }}</p>
-                                <p class="days"><span>{{ date('l, d F Y', strtotime( $item->departure_date)) }}</span></p>
-                                <hr>
-                                <p class="bottom-area d-flex">
-                                    <span><i class="icon-map-o"></i> {{ $item->location }}</span>
-                                    <span class="ml-auto"><a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}">Discover</a></span>
-                                </p>
+                <div class="col-sm col-md-6 col-lg ftco-animate">
+                    <div class="destination">
+                        <a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}" class="img img-2 d-flex justify-content-center align-items-center"
+                            style="background-image: url(landingpage/images/destination-1.jpg);">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <span class="icon-search2"></span>
                             </div>
+                        </a>
+                        <div class="text p-3">
+                            <div>
+                                <div>
+                                    <h3><a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}">Paket Wisata Jogja 1 hari</a></h3>
+                                    <span class="price">Rp. 240.000</span>
+                                </div>
+
+                            </div>
+                            <p>Malioboro, Candi Prambanan, Pantai Parangtritis, Alun alun kidul</p>
+                            <p class="days"><span>18 January 2022</span></p>
+                            <hr>
+                            <p class="bottom-area d-flex">
+                                <span><i class="icon-map-o"></i> Yogyakarta</span>
+                                <span class="ml-auto"><a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}">Discover</a></span>
+                            </p>
                         </div>
                     </div>
-                @endforeach
+                </div>
+                <div class="col-sm col-md-6 col-lg ftco-animate">
+                    <div class="destination">
+                        <a href="#" class="img img-2 d-flex justify-content-center align-items-center"
+                            style="background-image: url(landingpage/images/destination-1.jpg);">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <span class="icon-search2"></span>
+                            </div>
+                        </a>
+                        <div class="text p-3">
+                            <div>
+                                <div>
+                                    <h3><a href="#">Paket Bandung 2 hari</a></h3>
+                                    <span class="price">Rp. 440.000</span>
+                                </div>
+
+                            </div>
+                            <p>Dusun Bambu, Rancaupas, Gedung Sate</p>
+                            <p class="days"><span>30 April 2022</span></p>
+                            <hr>
+                            <p class="bottom-area d-flex">
+                                <span><i class="icon-map-o"></i> Bandung</span>
+                                <span class="ml-auto"><a href="#">Discover</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm col-md-6 col-lg ftco-animate">
+                    <div class="destination">
+                        <a href="#" class="img img-2 d-flex justify-content-center align-items-center"
+                            style="background-image: url(landingpage/images/destination-1.jpg);">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <span class="icon-search2"></span>
+                            </div>
+                        </a>
+                        <div class="text p-3">
+                            <div>
+                                <div>
+                                    <h3><a href="#">Paket Bali 5 hari</a></h3>
+                                    <span class="price">Rp. 800.000</span>
+                                </div>
+
+                            </div>
+                            <p>Desa Ubud, Pantai Kuta, Nusa Penida</p>
+                            <p class="days"><span>30 April 2022</span></p>
+                            <hr>
+                            <p class="bottom-area d-flex">
+                                <span><i class="icon-map-o"></i> Bali</span>
+                                <span class="ml-auto"><a href="#">Discover</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm col-md-6 col-lg ftco-animate">
+                    <div class="destination">
+                        <a href="#" class="img img-2 d-flex justify-content-center align-items-center"
+                            style="background-image: url(landingpage/images/destination-1.jpg);">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <span class="icon-search2"></span>
+                            </div>
+                        </a>
+                        <div class="text p-3">
+                            <div>
+                                <div>
+                                    <h3><a href="#">Paket Lombok 7 hari</a></h3>
+                                    <span class="price">Rp. 1.800.000</span>
+                                </div>
+
+                            </div>
+                            <p>Gili Trawangan, Mandalika, Waerebo</p>
+                            <p class="days"><span>24 April 2022</span></p>
+                            <hr>
+                            <p class="bottom-area d-flex">
+                                <span><i class="icon-map-o"></i> Lombok</span>
+                                <span class="ml-auto"><a href="#">Discover</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <input type="submit" value="View All" class="btn btn-primary float-right">
         </div>
