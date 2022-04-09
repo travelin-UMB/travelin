@@ -16,4 +16,8 @@ class travel_packages extends Model
     ];
 
     protected $hidden = [];
+
+    public function gallery(){
+        return $this->hasOne('\App\Models\gallery')->oldest();
+    }
 }

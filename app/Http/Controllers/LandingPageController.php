@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\travel_packages;
 
 class LandingPageController extends Controller
 {
     
     public function index(Request $request){
-        return view('pages.landingpage.index');
+        $data = travel_packages::orderBy('created_at', 'DESC')->get();
+    
+        $params['data'] = $data;
+        return view('pages.landingpage.index')->with($params);
     }
 
     public function city(Request $request){
