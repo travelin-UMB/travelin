@@ -21,18 +21,17 @@
 
             <div class="row justify-content-start mb-1">
                 <div class="col-md-7 heading-section ftco-animate">
-                    <span class="badge rounded-pill bg-primary text-white mt-1">Bandung</span>
-                    <h2 class="mb-4"><strong>Paket wisata Jogja 1 hari</strong></h2>
+                    <h2 class="mb-4"><strong>{{$data['judul']}}</strong></h2>
                 </div>
             </div>
 
-            <div class="row d-md-flex mb-5">
+            <div class="row mb-5">
                 <div class="col-md-6 ftco-animate img about-image"
-                    style="background-image: url(/landingpage/images/bg_2.jpg);">
+                    style="height: 400px; background-image: url({{$data['gambar']}});">
                 </div>
-                <div class="col-md-6 ftco-animate p-md-5">
+                <div class="col-md-6 ftco-animate">
                     <div class="row">
-                        <div class="col-md-12 nav-link-wrap mb-4">
+                        <div class="col-md-12 nav-link-wrap mb-3">
                             <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-whatwedo-tab" data-toggle="pill"
@@ -53,41 +52,17 @@
 
                                 <div class="tab-pane fade show active" id="v-pills-whatwedo" role="tabpanel"
                                     aria-labelledby="v-pills-whatwedo-tab">
-                                    <div>
-                                        <table class="table">
-                                            <tbody>
-                                                <tr style="border-top: hidden;">
-                                                    <td>City</td>
-                                                    <td>:</td>
-                                                    <td>Yogyakarta</td>
-                                                </tr>
-                                                <tr style="border-top: hidden;">
-                                                    <td>Price</td>
-                                                    <td>:</td>
-                                                    <td>Rp. 2.500.000</td>
-                                                </tr>
-                                                <tr style="border-top: hidden;">
-                                                    <td>Date Event</td>
-                                                    <td>:</td>
-                                                    <td>10 January 2023</td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
+                                    <div class="ml-3">
+                                       <h3><strong>{{$data['harga']}}</strong></h3>
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade" id="v-pills-mission" role="tabpanel"
                                     aria-labelledby="v-pills-mission-tab">
                                     <div>
-                                        <ol>
-                                            <li>Desa Ubud</li>
-                                            <li>Kebun Raya Bali</li>
-                                            <li>Tegalalang Residence</li>
-                                            <li>Pantai Pandawa</li>
-                                            <li>Klingking Beach</li>
-                                            <li>Nusa Penida</li>
-                                        </ol>
+                                        <ul>
+                                            <li>{{$data['deskripsi']}}</li>
+                                        </ul>
                                     </div>
                                 </div>
 
@@ -95,19 +70,7 @@
                                     aria-labelledby="v-pills-goal-tab">
                                     <div>
                                         <ul>
-                                            <li>Penjemputan di Bandara, Stasiun atau Hotel oleh pemandu kami.</li>
-                                            <li>Melanjutkan perjalanan paket wisata jogja 1 hari mengunjungi Tebing Breksi
-                                                yang merupakan tebing karst dan mempunyai ukiran wayang.</li>
-                                            <li>Lanjut naik ke kawasan Candi Ijo yang lokasinya tidak terlalu jauh dari
-                                                Tebing Breksi untuk menikmati panorama alam yang sangat cantik dilihat dari
-                                                puncak Candi Ijo.</li>
-                                            <li>Selanjutnya mengunjungi Goa Pindul untuk Cave Tubing Goa Pindul yang akan
-                                                menyusuri sungai bawah tanah di dalam Goa Pindul.</li>
-                                            <li>Setelah itu, meluncur ke Pantai Sadranan dan Pantai Ngandong yang mempunyai
-                                                hamparan pasir putih dan panorama sunset yang menarik.</li>
-                                            <li>Perjalanan kembali ke Yogyakarta dan singgah di Bukit Bintang untuk makan
-                                                malam maupun menikmati hamparan lampu perkotaan yang terlihat sangat cantik
-                                                dan menawan.</li>
+                                        {{$data['itenary']}}
                                         </ul>
                                     </div>
                                 </div>

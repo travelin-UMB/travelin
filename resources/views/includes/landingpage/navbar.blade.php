@@ -11,8 +11,8 @@
                 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
                 <li class="nav-item active"><a href="{{ url('featured_destination') }}" class="nav-link">Featured
                         Destination</a></li>
-                <li class="nav-item"><a href="{{ url('our_package') }}" class="nav-link">Our Package</a>
-                </li>
+                {{--<li class="nav-item"><a href="{{ url('our_package') }}" class="nav-link">Our Package</a>
+                </li>--}}
                 {{-- <li class="nav-item"><a href="{{ url('my_package') }}" class="nav-link">My Packages</a>
                 </li> --}}
                 @guest

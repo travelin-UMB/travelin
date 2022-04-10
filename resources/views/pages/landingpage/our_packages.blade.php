@@ -1,7 +1,7 @@
 @extends('layouts.landingpage')
 
 @section('content')
-    <div class="hero-wrap js-fullheight" style="background-image: url('landingpage/images/bg_3.jpg');">
+    <div class="hero-wrap js-fullheight" style="background-image: url('/landingpage/images/bg_3.jpg');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
@@ -74,12 +74,10 @@
 
                             </div>
                             <p>{{$item['deskripsi']}}</p>
-                            <p class="days"><span>subjudul</span>
-                            </p>
                             <hr>
                             <p class="bottom-area d-flex">
-                                <span><i class="icon-map-o"></i> Lombok</span>
-                                <span class="ml-auto"><a href="#">Discover</a></span>
+                                {{-- <span><i class="icon-map-o"></i> Lombok</span> --}}
+                                <span class="ml-auto"><a href="{{ route('package_detail', ['url'=>$item['url_wst']]) }}">Discover</a></span>
                             </p>
                         </div>
                     </div>

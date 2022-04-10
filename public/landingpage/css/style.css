@@ -7781,7 +7781,9 @@ h1, h2, h3, h4, h5,
     border-top: 1px solid transparent;
     background: #fff; }
     .destination .text h3 {
-      font-size: 18px; }
+      font-size: 16px;
+      font-weight: 600;
+     }
       .destination .text h3 a {
         color: #000000; }
     .destination .text span.listing {

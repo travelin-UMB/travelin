@@ -27,21 +27,23 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="item col-xs-3 col-sm-3 col-md-3">
-                            <div class="destination">
-                                <a href="{{ url('our_package') }}" class="img d-flex justify-content-center align-items-center"
-                                    style="background-image: url(landingpage/images/destination-1.jpg);">
-                                    <div class="icon d-flex justify-content-center align-items-center">
-                                        <span class="icon-search2"></span>
+                        @foreach ($data as $item)
+                            <div class="item col-xs-3 col-sm-3 col-md-3">
+                                <div class="destination">
+                                    <a href="{{ url('our_package') }}" class="img d-flex justify-content-center align-items-center"
+                                        style="background-image: url({{$item['gambar']}});">
+                                        <div class="icon d-flex justify-content-center align-items-center">
+                                            <span class="icon-search2"></span>
+                                        </div>
+                                    </a>
+                                    <div class="text p-3">
+                                        <h3><a href="{{ route('our_package', ['url'=>$item['url']]) }}">{{$item['judul']}}</a></h3>
                                     </div>
-                                </a>
-                                <div class="text p-3">
-                                    <h3><a href="#">Bali</a></h3>
-                                    <span class="listing">15 Listing</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item col-xs-3 col-sm-3 col-md-3">
+                        @endforeach
+                       
+                        {{-- <div class="item col-xs-3 col-sm-3 col-md-3">
                             <div class="destination">
                                 <a href="#" class="img d-flex justify-content-center align-items-center"
                                     style="background-image: url(landingpage/images/destination-2.jpg);">
@@ -111,6 +113,7 @@
                                 </div>
                             </div>
                         </div>
+                        --}}
                     </div>
                 </div>
             </div>

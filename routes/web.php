@@ -61,8 +61,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', [LandingPageController::class, 'index']);
 Route::get('featured_destination', [LandingPageController::class, 'city']);
-Route::get('our_package', [LandingPageController::class, 'our_package']);
+Route::get('our_package/{url}', [LandingPageController::class, 'our_package'])->name('our_package');
 Route::get('my_package', [LandingPageController::class, 'my_package']);
-Route::get('detail/{city}/{name}/{id}', [LandingPageController::class, 'package_detail'])->name('package_detail');
+Route::get('detail/{url}/{url_sub?}', [LandingPageController::class, 'package_detail'])->name('package_detail');
 
 Route::get('/scrape', [ScrapeController::class, 'scrape']);

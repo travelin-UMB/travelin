@@ -82,14 +82,14 @@
                         @foreach ($data as $item)
                         <div class="item">
                             <div class="destination">
-                                <a href="{{ url('our_package') }}" class="img d-flex justify-content-center align-items-center"
+                                <a href="{{ route('our_package', ['url'=>$item['url']]) }}" class="img d-flex justify-content-center align-items-center"
                                     style="background-image: url({{$item['gambar']}});">
                                     <div class="icon d-flex justify-content-center align-items-center">
                                         <span class="icon-search2"></span>
                                     </div>
                                 </a>
                                 <div class="text p-3">
-                                    <h3><a href="{{ url('our_package') }}">{{$item['judul']}}</a></h3>
+                                    <h3><a href="{{ route('our_package', ['url'=>$item['url']]) }}">{{$item['judul']}}</a></h3>
                                     {{-- <span class="listing">15 Listing</span> --}}
                                 </div>
                             </div>
@@ -181,12 +181,13 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-sm col-md-6 col-lg ftco-animate">
+                @foreach ($data_wst as $item)
+                <div class="col-md-3 ftco-animate">
                     <div class="destination">
-                        <a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}" class="img img-2 d-flex justify-content-center align-items-center"
-                            style="background-image: url(landingpage/images/destination-1.jpg);">
+                        <a href="" class="img img-2 d-flex justify-content-center align-items-center"
+                            style="background-image: url({{$item['gambar_wst']}});">
                             <div class="icon d-flex justify-content-center align-items-center">
                                 <span class="icon-search2"></span>
                             </div>
@@ -194,21 +195,21 @@
                         <div class="text p-3">
                             <div>
                                 <div>
-                                    <h3><a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}">Paket Wisata Jogja 1 hari</a></h3>
-                                    <span class="price">Rp. 240.000</span>
+                                    <h3><a href="">{{$item['judul_wst']}}</a></h3>
+                                    <span class="price">{{$item['price_wst']}}</span>
                                 </div>
 
                             </div>
-                            <p>Malioboro, Candi Prambanan, Pantai Parangtritis, Alun alun kidul</p>
-                            <p class="days"><span>18 January 2022</span></p>
+                            {{ $item['dest_wst'] }}
                             <hr>
                             <p class="bottom-area d-flex">
-                                <span><i class="icon-map-o"></i> Yogyakarta</span>
-                                <span class="ml-auto"><a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}">Discover</a></span>
+                                <span class="ml-auto"><a href="{{ route('package_detail', ['url'=>$item['url_wst']]) }}">Discover</a></span>
                             </p>
                         </div>
                     </div>
                 </div>
+                @endforeach
+                {{--
                 <div class="col-sm col-md-6 col-lg ftco-animate">
                     <div class="destination">
                         <a href="#" class="img img-2 d-flex justify-content-center align-items-center"
@@ -286,7 +287,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <input type="submit" value="View All" class="btn btn-primary float-right">
         </div>
