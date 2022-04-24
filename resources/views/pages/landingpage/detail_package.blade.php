@@ -85,21 +85,29 @@
           <div class="col-md-8 pr-md-5 mb-5">
             <h2 class="mb-4"><strong>Reservation Form</strong></h2>
 
-            <form action="#">
+            <form action="{{ route('reservation') }}" method="post">
+            @csrf
+                <input type="hidden" class="form-control" name="travel_paket" value="{{$data['judul']}}">
+                <input type="hidden" class="form-control" name="travel_price" value="{{$data['harga_format']}}">
+                <input type="hidden" class="form-control" name="travel_url" value="{{$paket_url}}">
+
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="text" class="form-control" placeholder="Your Name" name="name">
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" placeholder="Your Email">
+                <input type="email" class="form-control" placeholder="Your Email" name="email">
               </div>
               <div class="form-group">
-                <input type="phone" class="form-control" placeholder="Your Phone">
+                <input type="phone" class="form-control" placeholder="Your Phone" name="phone">
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" placeholder="Number of Participants">
+                <input type="number" class="form-control" placeholder="Number of Participants" name="participant_count">
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Note"></textarea>
+                <input type="date" class="form-control" placeholder="Date Travel" name="travel_date">
+                </div>
+              <div class="form-group">
+                <textarea id="" cols="30" rows="7" class="form-control" placeholder="Note" name="note"></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="Submit Ticket" class="btn btn-primary py-3 px-5">

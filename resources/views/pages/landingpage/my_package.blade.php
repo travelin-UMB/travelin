@@ -29,7 +29,7 @@
       <div class="row">
 			  <div class="col-md-4 ftco-animate">
                     <div class="destination">
-                        <a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}" class="img img-2 d-flex justify-content-center align-items-center"
+                        <a href="" class="img img-2 d-flex justify-content-center align-items-center"
                             style="background-image: url(landingpage/images/destination-1.jpg);">
                             <div class="icon d-flex justify-content-center align-items-center">
                                 <span class="icon-search2"></span>
@@ -38,7 +38,7 @@
                         <div class="text p-3">
                             <div>
                                 <div>
-                                    <h3><a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}">Paket Wisata Jogja 1 hari</a></h3>
+                                    <h3><a href="">Paket Wisata Jogja 1 hari</a></h3>
                                     <span class="price">Rp. 240.000</span>
                                 </div>
 
@@ -50,7 +50,7 @@
                             <hr>
                             <p class="bottom-area d-flex">
                                 <span><i class="icon-map-o"></i> Yogyakarta</span>
-                                <span class="ml-auto"><a href="{{ route('package_detail', ['city'=>'Bali', 'name'=>Str::slug('Paket Wisata Jogja 1 hari'), 'id'=>'1']) }}">Discover</a></span>
+                                <span class="ml-auto"><a href="">Discover</a></span>
                             </p>
                         </div>
                     </div>

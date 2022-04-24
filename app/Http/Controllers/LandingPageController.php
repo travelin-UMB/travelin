@@ -277,6 +277,7 @@ class LandingPageController extends Controller
         $html = file_get_contents($url_dom);
         $xpath_doc = new \DOMDocument();
         libxml_use_internal_errors(TRUE);
+        $url_paket = $url . "/" . $url_sub;
         
 
         if(!empty($html)){
@@ -305,12 +306,15 @@ class LandingPageController extends Controller
                     $cariItenaryList[] = array('itenary' => $itenary -> nodeValue);
                 }
                 foreach($cariHarga as $harga){
+                    $harga_format = $harga -> nodeValue;
+                    $harga_format_rv = str_replace('Harga Mulai : Rp ', '', $harga_format);
+                    $harga_format_rv_dot = str_replace('.', '', $harga_format_rv);
                     $cariHargaList[] = array('harga' => $harga -> nodeValue);
+                    $cariHargaFormatList[] = array('harga_format' => $harga_format_rv_dot);
                 }
                 foreach($cariGambar as $gambar){
                     $cariGambarList[] = array('gambar' => $gambar -> nodeValue);
                 }
-                // dd($cariGambarList);
                 $i = 0;
                 foreach($cariJudul as $data){
                     $cariDataList[] = array(
@@ -318,6 +322,7 @@ class LandingPageController extends Controller
                         'deskripsi' => $cariDeskripsiList[$i]["deskripsi"],
                         'itenary' => $cariItenaryList[$i]["itenary"],
                         'harga' => $cariHargaList[$i]["harga"],
+                        'harga_format' => $cariHargaFormatList[$i]["harga_format"],
                         'gambar' => $cariGambarList[$i]["gambar"],
                     );
                 $i++;
@@ -329,7 +334,8 @@ class LandingPageController extends Controller
         }
 
         return view('pages.landingpage.detail_package',[
-            'data' => $data[0]
+            'data' => $data[0],
+            'paket_url' => $url_paket,
         ]);
     }
 
