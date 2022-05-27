@@ -16,7 +16,13 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $items = Reservation::with([
+            'user'
+        ])->get();
+        
+        return view('pages.admin.reservation.index',[
+            'items' => $items
+        ]);
     }
 
     /**
