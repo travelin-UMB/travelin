@@ -90,83 +90,13 @@
                                 </a>
                                 <div class="text p-3">
                                     <h3><a href="{{ route('our_package', ['url'=>$item['url']]) }}">{{$item['judul']}}</a></h3>
-                                    {{-- <span class="listing">15 Listing</span> --}}
                                 </div>
                             </div>
                             
                         </div>
                         @endforeach
-                        {{-- <div class="item">
-                            <div class="destination">
-                                <a href="#" class="img d-flex justify-content-center align-items-center"
-                                    style="background-image: url(landingpage/images/destination-2.jpg);">
-                                    <div class="icon d-flex justify-content-center align-items-center">
-                                        <span class="icon-search2"></span>
-                                    </div>
-                                </a>
-                                <div class="text p-3">
-                                    <h3><a href="#">Yogyakarta</a></h3>
-                                    <span class="listing">20 Listing</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="destination">
-                                <a href="#" class="img d-flex justify-content-center align-items-center"
-                                    style="background-image: url(landingpage/images/destination-3.jpg);">
-                                    <div class="icon d-flex justify-content-center align-items-center">
-                                        <span class="icon-search2"></span>
-                                    </div>
-                                </a>
-                                <div class="text p-3">
-                                    <h3><a href="#">Lombok</a></h3>
-                                    <span class="listing">10 Listing</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="destination">
-                                <a href="#" class="img d-flex justify-content-center align-items-center"
-                                    style="background-image: url(landingpage/images/destination-4.jpg);">
-                                    <div class="icon d-flex justify-content-center align-items-center">
-                                        <span class="icon-search2"></span>
-                                    </div>
-                                </a>
-                                <div class="text p-3">
-                                    <h3><a href="#">Medan</a></h3>
-                                    <span class="listing">3 Listing</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="destination">
-                                <a href="#" class="img d-flex justify-content-center align-items-center"
-                                    style="background-image: url(landingpage/images/destination-5.jpg);">
-                                    <div class="icon d-flex justify-content-center align-items-center">
-                                        <span class="icon-search2"></span>
-                                    </div>
-                                </a>
-                                <div class="text p-3">
-                                    <h3><a href="#">Banten</a></h3>
-                                    <span class="listing">3 Listing</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="destination">
-                                <a href="#" class="img d-flex justify-content-center align-items-center"
-                                    style="background-image: url(landingpage/images/destination-6.jpg);">
-                                    <div class="icon d-flex justify-content-center align-items-center">
-                                        <span class="icon-search2"></span>
-                                    </div>
-                                </a>
-                                <div class="text p-3">
-                                    <h3><a href="#">Kalimantan</a></h3>
-                                    <span class="listing">3 Listing</span>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
+                    <a href="{{ url('featured_destination') }}" class="btn btn-primary float-right">View All</a>
                 </div>
             </div>
         </div>
@@ -209,156 +139,10 @@
                     </div>
                 </div>
                 @endforeach
-                {{--
-                <div class="col-sm col-md-6 col-lg ftco-animate">
-                    <div class="destination">
-                        <a href="#" class="img img-2 d-flex justify-content-center align-items-center"
-                            style="background-image: url(landingpage/images/destination-1.jpg);">
-                            <div class="icon d-flex justify-content-center align-items-center">
-                                <span class="icon-search2"></span>
-                            </div>
-                        </a>
-                        <div class="text p-3">
-                            <div>
-                                <div>
-                                    <h3><a href="#">Paket Bandung 2 hari</a></h3>
-                                    <span class="price">Rp. 440.000</span>
-                                </div>
-
-                            </div>
-                            <p>Dusun Bambu, Rancaupas, Gedung Sate</p>
-                            <p class="days"><span>30 April 2022</span></p>
-                            <hr>
-                            <p class="bottom-area d-flex">
-                                <span><i class="icon-map-o"></i> Bandung</span>
-                                <span class="ml-auto"><a href="#">Discover</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm col-md-6 col-lg ftco-animate">
-                    <div class="destination">
-                        <a href="#" class="img img-2 d-flex justify-content-center align-items-center"
-                            style="background-image: url(landingpage/images/destination-1.jpg);">
-                            <div class="icon d-flex justify-content-center align-items-center">
-                                <span class="icon-search2"></span>
-                            </div>
-                        </a>
-                        <div class="text p-3">
-                            <div>
-                                <div>
-                                    <h3><a href="#">Paket Bali 5 hari</a></h3>
-                                    <span class="price">Rp. 800.000</span>
-                                </div>
-
-                            </div>
-                            <p>Desa Ubud, Pantai Kuta, Nusa Penida</p>
-                            <p class="days"><span>30 April 2022</span></p>
-                            <hr>
-                            <p class="bottom-area d-flex">
-                                <span><i class="icon-map-o"></i> Bali</span>
-                                <span class="ml-auto"><a href="#">Discover</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm col-md-6 col-lg ftco-animate">
-                    <div class="destination">
-                        <a href="#" class="img img-2 d-flex justify-content-center align-items-center"
-                            style="background-image: url(landingpage/images/destination-1.jpg);">
-                            <div class="icon d-flex justify-content-center align-items-center">
-                                <span class="icon-search2"></span>
-                            </div>
-                        </a>
-                        <div class="text p-3">
-                            <div>
-                                <div>
-                                    <h3><a href="#">Paket Lombok 7 hari</a></h3>
-                                    <span class="price">Rp. 1.800.000</span>
-                                </div>
-
-                            </div>
-                            <p>Gili Trawangan, Mandalika, Waerebo</p>
-                            <p class="days"><span>24 April 2022</span></p>
-                            <hr>
-                            <p class="bottom-area d-flex">
-                                <span><i class="icon-map-o"></i> Lombok</span>
-                                <span class="ml-auto"><a href="#">Discover</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div> --}}
-            </div>
-            <input type="submit" value="View All" class="btn btn-primary float-right">
-        </div>
-    </section>
-
-    <section class="ftco-section testimony-section bg-light">
-        <div class="container">
-            <div class="row justify-content-start">
-                <div class="col-md-1"></div>
-                <div class="col-md-8 heading-section ftco-animate">
-                    <span class="subheading">Testimony</span>
-                    <h2 class="mb-4 pb-3"><strong>Our</strong> Guests Says</h2>
-                    <div class="row ftco-animate">
-                        <div class="col-md-12">
-                            <div class="carousel-testimony owl-carousel">
-                                <div class="item">
-                                    <div class="testimony-wrap d-flex">
-                                        <div class="user-img mb-5"
-                                            style="background-image: url(landingpage/images/person_1.jpg)">
-                                            <span class="quote d-flex align-items-center justify-content-center">
-                                                <i class="icon-quote-left"></i>
-                                            </span>
-                                        </div>
-                                        <div class="text ml-md-4">
-                                            <p class="mb-5">Far far away, behind the word mountains, far from the
-                                                countries Vokalia and Consonantia, there live the blind texts.</p>
-                                            <p class="name">Dennis Green</p>
-                                            <span class="position">Guest from italy</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="testimony-wrap d-flex">
-                                        <div class="user-img mb-5"
-                                            style="background-image: url(landingpage/images/person_2.jpg)">
-                                            <span class="quote d-flex align-items-center justify-content-center">
-                                                <i class="icon-quote-left"></i>
-                                            </span>
-                                        </div>
-                                        <div class="text ml-md-4">
-                                            <p class="mb-5">Far far away, behind the word mountains, far from the
-                                                countries Vokalia and Consonantia, there live the blind texts.</p>
-                                            <p class="name">Dennis Green</p>
-                                            <span class="position">Guest from London</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="testimony-wrap d-flex">
-                                        <div class="user-img mb-5"
-                                            style="background-image: url(landingpage/images/person_3.jpg)">
-                                            <span class="quote d-flex align-items-center justify-content-center">
-                                                <i class="icon-quote-left"></i>
-                                            </span>
-                                        </div>
-                                        <div class="text ml-md-4">
-                                            <p class="mb-5">Far far away, behind the word mountains, far from the
-                                                countries Vokalia and Consonantia, there live the blind texts.</p>
-                                            <p class="name">Dennis Green</p>
-                                            <span class="position">Guest from Philippines</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        
             </div>
         </div>
     </section>
-
     
     <section class="ftco-section bg-light">
         <div class="container">
@@ -370,21 +154,34 @@
             </div>
             <div class="row justify-content-center">
             <div class="col-md-6 pr-md-5">
-                <form action="#">
+                <form action="{{ route('process_guestbook') }}" method="post">
+                    @csrf
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name">
+                        @if(!empty($user->name))
+                            <input type="text" class="form-control" name="name" placeholder="Your Name" value="{{ $user->name }}">
+                        @else
+                            <input type="text" class="form-control" required name="name" placeholder="Your Name">
+                        @endif
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Email">
+                        @if(!empty($user->email))
+                            <input type="text" class="form-control" name="email" placeholder="Your Email" value="{{ $user->email }}">
+                        @else
+                            <input type="text" class="form-control" required name="email" placeholder="Your Email">
+                        @endif
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Phone">
+                        @if(!empty($user->phone))
+                            <input type="text" class="form-control" name="phone" placeholder="Your Phone" value="{{ $user->phone }}">
+                        @else
+                            <input type="text" class="form-control" required name="phone" placeholder="Your Phone">
+                        @endif
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Subject">
+                        <input type="text" class="form-control" required name="phone" placeholder="Subject">
                     </div>
                     <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                        <textarea name="" id="" cols="30" rows="7" required name="message" class="form-control" placeholder="Message"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">

@@ -16,6 +16,8 @@ class LandingPageController extends Controller
         $xpath_doc = new \DOMDocument();
         libxml_use_internal_errors(TRUE);
 
+        $user = Auth::user();
+
         if(!empty($html)){
             $xpath_doc -> loadHTML($html);
             libxml_clear_errors();
@@ -103,7 +105,8 @@ class LandingPageController extends Controller
         }
         return view('pages.landingpage.index',[
             'data' => $data,
-            'data_wst' => $dataWst
+            'data_wst' => $dataWst,
+            'user' => $user,
         ]);
     }
 
@@ -159,6 +162,8 @@ class LandingPageController extends Controller
         $html = file_get_contents($url_wst);
         $xpath_doc = new \DOMDocument();
         libxml_use_internal_errors(TRUE);
+
+        $city_replace = str_replace('paket-wisata-', '', $url);
 
         if(!empty($html)){
             $xpath_doc -> loadHTML($html);
@@ -218,7 +223,8 @@ class LandingPageController extends Controller
         }
 
         return view('pages.landingpage.our_packages',[
-            'data' => $data
+            'data' => $data,
+            'city' => $city_replace,
         ]);
 
         // if(!empty($html)){
@@ -434,14 +440,30 @@ class LandingPageController extends Controller
             $data->payment_slip = $fileName;
             $data->note = $request->note;
             $data->status = "1";
-
-
         }
 
         $data->save();
 
-        return redirect()->route('my_package', 1);
+        $user = Auth::user();
 
+        $returnUrl = 'my_package/' . $user->id; 
+
+        return redirect($returnUrl);
+
+
+    }
+
+    public function processGuestBook(Request $request)   {
+
+        // $reservation= GuestBook::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'phone' => $request->phone,
+        //     'subject' => $request->subject,
+        //     'message' => $request->message,
+        // ]);
+
+        return redirect()->back();
 
     }
     

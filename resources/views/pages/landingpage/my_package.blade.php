@@ -19,7 +19,7 @@
     <section class="ftco-section ftco-degree-bg">
         <div class="container">
 
-            <div class="row justify-content-start mb-5 pb-3">
+            <div class="row justify-content-start mb-3">
                 <div class="col-md-7 heading-section ftco-animate">
                     <span class="subheading">Package</span>
                     <h2 class="mb-4"><strong>My Package</strong> Destination</h2>
@@ -33,7 +33,7 @@
                             <div class="item col-xs-4 col-sm-4 col-md-4">
                                 <div class="destination">
                                     <a href="{{ route('my_package_detail', ['id'=>$item['id'], 'url'=>$item['travel_url']]) }}" class="img img-2 d-flex justify-content-center align-items-center"
-                                        style="background-image: url(/landingpage/images/destination-1.jpg);">
+                                        style="background-image: url({{$item['travel_image']}});">
                                         <div class="icon d-flex justify-content-center align-items-center">
                                             <span class="icon-search2"></span>
                                         </div>

@@ -17,39 +17,14 @@
 
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
+      <div class="row justify-content-start mb-3">
+                <div class="col-md-7 heading-section ftco-animate">
+                    <span class="subheading">Package Destination</span>
+                    <h2 class="mb-4"><strong>Our Package</strong> {{ ucfirst($city) }}</h2>
+                </div>
+            </div>
         <div class="row">
-        	<div class="col-lg-3 sidebar ftco-animate">
-        		<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">Find Package</h3>
-        			<form action="#">
-        				<div class="fields">
-		              <div class="form-group">
-		                <div class="select-wrap one-third">
-	                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                    <select name="" id="" class="form-control" placeholder="Keyword search">
-	                      <option value="">Select City</option>
-	                      <option value="">Bali</option>
-	                      <option value="">Bengkulu</option>
-	                      <option value="">Lombok</option>
-	                      <option value="">Yogyakarta</option>
-	                      <option value="">Srilanka</option>
-	                    </select>
-	                  </div>
-		              </div>
-		              <div class="form-group">
-		                <input type="text" id="checkin_date" class="form-control" placeholder="Date from">
-		              </div>
-		              <div class="form-group">
-		                <input type="text" id="checkin_date" class="form-control" placeholder="Date to">
-		              </div>
-		              <div class="form-group">
-		                <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
-		              </div>
-		            </div>
-	            </form>
-        		</div>
-          </div>
-          <div class="col-lg-9">
+          <div class="col-lg-12">
           	<div class="row">
                 @foreach ($data as $item)
                   <div class="col-md-4 ftco-animate">
@@ -65,7 +40,7 @@
                                 <div>
                                     
                                     <h3><a href="{{ route('package_detail', ['url'=>$item['url_wst']]) }}">{{$item['judul']}}</a></h3>
-                                    <span class="price">{{$item['harga']}}</span>     
+                                    <span class="price">{{$item['harga']}}</span>
                                    
                                 </div>
 

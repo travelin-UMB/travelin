@@ -57,6 +57,11 @@
                                        <table class="table">
                                        <tbody>
                                             <tr>
+                                                <td>City</td>
+                                                <td>:</td>
+                                                <td>{{ $detail['travel_city'] }}</td>
+                                            </tr>
+                                            <tr>
                                                 <td>Date Tour</td>
                                                 <td>:</td>
                                                 <td>{{ $detail['travel_date'] }}</td>
@@ -92,11 +97,7 @@
                                                     @endif
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Notes</td>
-                                                <td>:</td>
-                                                <td>{{ $detail['note'] }}</td>
-                                            </tr>
+                                    
                                         </tbody>
                                         </table>
                                     </div>
@@ -138,16 +139,30 @@
                 </strong>
             </h2>
 
-            <div class="alert alert-warning" role="alert">
-                Please make payment to :
-                <ul>
-                    <li>Bank : BCA</li>
-                    <li>Account Number : 5010458279</li>
-                    <li>Account Holder  : Fajar Subeki</li>
-                    <li>Nominal Transfer  : @currency($detail['travel_price'] * $detail['participant_count'])</li>
-                </ul>
-                <i style="color: red;">Make payment before 1 hour and upload  payment slip in form below for package transactions remain active!</i>
-            </div>
+            @if($detail->status == 0)
+                <div class="alert alert-warning" role="alert">
+                    Please make payment to :
+                    <ul>
+                        <li>Bank : BCA</li>
+                        <li>Account Number : 5010458279</li>
+                        <li>Account Holder  : Fajar Subeki</li>
+                        <li>Nominal Transfer  : @currency($detail['travel_price'] * $detail['participant_count'])</li>
+                    </ul>
+                    <i style="color: red;">Make payment before 1 hour and upload  payment slip in form below for package transactions remain active!</i>
+                </div>
+            @endif
+
+            @if($detail->status == 1)
+                <div class="alert alert-warning" role="alert">
+                    Thank you for make the payment, please wait for admin confirmation
+                </div>
+            @endif
+
+            @if($detail->status == 4)
+                <div class="alert alert-danger" role="alert">
+                    Your payment is rejected, please make payment again with data correctly
+                </div>
+            @endif
 
             <form action="{{ route('process_payment') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -166,7 +181,7 @@
                 <input type="phone" class="form-control" readonly placeholder="Your Phone" name="phone" value="{{ $detail['user']->phone }}">
             </div>
             <div class="form-group">
-                @if($detail->status == 0 || $detail->status == 5)
+                @if($detail->status == 0 || $detail->status == 4)
                     <textarea id="" cols="30" rows="7" class="form-control" required name="note">{{ $detail['note'] }}</textarea>
                 @else
                     <textarea id="" cols="30" rows="7" class="form-control" readonly placeholder="{{ $detail['note'] }}" name="note"></textarea>
@@ -176,14 +191,18 @@
                 <label>Payment Slip</label>
                 @if(!empty($detail['payment_slip']))
                 <div class="col-md-12">
-                    <img src="{{ asset('storage/images/'. $detail->payment_slip) }}" style="width: 500px;" class="img img-flud"/>                    
+                    <img src="{{ asset('storage/images/'. $detail->payment_slip) }}" style="width: 500px;" class="img img-flud"/>   
+                    @if($detail->status == 4)
+                        <hr>
+                        <input type="file" accept="image/jpeg,image/jpg,image/png,application/pdf" class="form-control" required name="payment_attachment">
+                    @endif
                 </div>
                 @else
                     <input type="file" accept="image/jpeg,image/jpg,image/png,application/pdf" class="form-control" required name="payment_attachment">
                 @endif
             </div>
             
-              @if($detail->status == 0 || $detail->status == 5)
+              @if($detail->status == 0 || $detail->status == 4)
               <div class="form-group">
                 <input type="submit" value="Send Payment Attachment" class="btn btn-primary btn-md">
               </div>

@@ -76,7 +76,9 @@ class ReservationController extends Controller
             'travel_city' => $request->travel_city
         ]);
 
-        return redirect()->route('my_package');
+        $returnUrl = 'detail_my_package/' . $reservation->id . '/' . $request->travel_url; 
+
+        return redirect($returnUrl);
     }
 
     /**

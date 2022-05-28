@@ -1,20 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Travelin</a>
+        <a class="navbar-brand" href="{{ url('/') }}">Travelin</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
-                <li class="nav-item active"><a href="{{ url('featured_destination') }}" class="nav-link">Featured
+            <ul class="navbar-nav nav ml-auto">
+                <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{{ url('featured_destination') }}" class="nav-link">Featured
                         Destination</a></li>
-                {{--<li class="nav-item"><a href="{{ url('our_package') }}" class="nav-link">Our Package</a>
-                </li>--}}
-                {{-- <li class="nav-item"><a href="{{ url('my_package') }}" class="nav-link">My Packages</a>
-                </li> --}}
                 @guest
                     <li class="nav-item cta">
                         <a href="{{ url('login') }}" class="nav-link">
@@ -24,15 +20,27 @@
                 @endguest
                 @auth
                     <li class="nav-item">
-                        <a href="{{ route('my_package', ['id'=>1]) }}" class="nav-link">My Packages</a>
+                        <a href="{{ route('my_package', ['id'=>auth()->user()->id]) }}" class="nav-link">My Packages</a>
                     </li>
-                    <form action="{{ url('logout') }}" method="POST">
+                    <li class="nav-item cta">
+                    <form action="{{ url('logout') }}" method="POST" class="nav-link">
                         @csrf
-                        <button class="btn btn-login my-2 my-sm-0" type="submit">Logout</button>
+                        <button class="btn btn-sm" type="submit">Logout</button>
                     </form>
+                    </li>
                 @endauth
             </ul>
         </div>
     </div>
 </nav>
 <!-- END nav -->
+<script src="{{ url('landingpage/js/jquery.min.js') }}"></script>
+
+<script>
+
+$(".nav .nav-link").on("click", function(){
+
+   $(".nav").find(".active").removeClass("active");
+   $(this).addClass("active");
+});
+</script>

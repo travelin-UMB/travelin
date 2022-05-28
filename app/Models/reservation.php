@@ -15,7 +15,7 @@ class Reservation extends Model
     protected $table = 'reservation';
 
     protected $fillable = [
-        'users_id', 'travel_paket', 'participant_count', 'travel_price', 'travel_url', 'note', 'status', 'travel_date'
+        'users_id', 'travel_paket', 'participant_count', 'travel_price', 'travel_url', 'note', 'status', 'travel_date', 'travel_city', 'travel_image'
     ];
 
     protected $hidden = [];

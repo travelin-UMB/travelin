@@ -77,4 +77,5 @@ Route::get('detail_my_package/{id}/{url}/{url_sub?}', [LandingPageController::cl
 Route::get('/scrape', [ScrapeController::class, 'scrape']);
 
 Route::post('reservation', [ReservationController::class, 'store'])->name('reservation');
+Route::post('process_guestbook', [LandingPageController::class, 'processGuestBook'])->name('process_guestbook');
 Route::post('process_payment', [LandingPageController::class, 'processPayment'])->name('process_payment');

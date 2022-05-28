@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('payment_slip')->nullable();
             $table->string('travel_city');
             $table->string('travel_image');
+            $table->string('note_rejected')->nullable();
         });
     }
 

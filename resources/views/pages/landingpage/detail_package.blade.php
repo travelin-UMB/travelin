@@ -90,7 +90,7 @@
                 <input type="hidden" class="form-control" name="travel_paket" value="{{$data['judul']}}">
                 <input type="hidden" class="form-control" name="travel_price" value="{{$data['harga_format']}}">
                 <input type="hidden" class="form-control" name="travel_url" value="{{$paket_url}}">
-                <input type="hidden" class="form-control" name="travel_image" value="{ $data['gambar'] }}">
+                <input type="hidden" class="form-control" name="travel_image" value="{{ $data['gambar'] }}">
                 <input type="hidden" class="form-control" name="travel_city" value="{{ ucfirst($city) }}">
 
               <div class="form-group">
