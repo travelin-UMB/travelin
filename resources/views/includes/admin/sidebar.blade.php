@@ -17,8 +17,20 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
-  
+    
     <li class="nav-item">
+      <a class="nav-link" href="{{ route('user.index') }}">
+        <i class="fas fa-fw fa-hotel"></i>
+        <span>User</span></a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('reservation.index') }}">
+        <i class="fas fa-fw fa-hotel"></i>
+        <span>Reservation</span></a>
+    </li>
+
+    {{-- <li class="nav-item">
       <a class="nav-link" href="{{ route('travel-package.index') }}">
         <i class="fas fa-fw fa-hotel"></i>
         <span>Paket Travel</span></a>
@@ -34,7 +46,7 @@
       <a class="nav-link" href="{{ route('transaction.index') }}">
         <i class="fas fa-fw fa-dollar-sign"></i>
         <span>Transaksi</span></a>
-    </li>
+    </li> --}}
   
     <hr class="sidebar-divider">
   

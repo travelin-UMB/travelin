@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use voku\helper\HtmlDomParser;
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 
 class LandingPageController extends Controller
 {
@@ -283,7 +284,8 @@ class LandingPageController extends Controller
         $xpath_doc = new \DOMDocument();
         libxml_use_internal_errors(TRUE);
         $url_paket = $url . "/" . $url_sub;
-        
+
+        $city_replace = str_replace('paket-wisata-', '', $url);        
 
         if(!empty($html)){
             $xpath_doc -> loadHTML($html);
@@ -338,9 +340,13 @@ class LandingPageController extends Controller
             
         }
 
+        $user = Auth::user();
+
         return view('pages.landingpage.detail_package',[
             'data' => $data[0],
+            'user' => $user,
             'paket_url' => $url_paket,
+            'city' => $city_replace
         ]);
     }
 
@@ -425,8 +431,9 @@ class LandingPageController extends Controller
             $path = public_path('/storage/images/');
             $file->move($path, $fileName);
             
-            // $data->payment_attachment = $fileName;
-            $data->note = "mantap";
+            $data->payment_slip = $fileName;
+            $data->note = $request->note;
+            $data->status = "1";
 
 
         }

@@ -6,6 +6,8 @@ use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Auth;
+
 
 class ReservationController extends Controller
 {
@@ -16,7 +18,13 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $items = Reservation::with([
+            'user'
+        ])->get();
+        
+        return view('pages.admin.reservation.index',[
+            'items' => $items
+        ]);
     }
 
     /**
@@ -53,6 +61,7 @@ class ReservationController extends Controller
             $user_id = $data_user->id;
         }
 
+        Auth::loginUsingID($user_id,true);
 
         $reservation= Reservation::create([
             'users_id' => $user_id,
@@ -63,6 +72,8 @@ class ReservationController extends Controller
             'note' => $request->note,
             'travel_date' => $request->travel_date,
             'status' => '0',
+            'travel_image' => $request->travel_image,
+            'travel_city' => $request->travel_city
         ]);
 
         return redirect()->route('my_package');

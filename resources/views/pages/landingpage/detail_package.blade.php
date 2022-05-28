@@ -90,15 +90,29 @@
                 <input type="hidden" class="form-control" name="travel_paket" value="{{$data['judul']}}">
                 <input type="hidden" class="form-control" name="travel_price" value="{{$data['harga_format']}}">
                 <input type="hidden" class="form-control" name="travel_url" value="{{$paket_url}}">
+                <input type="hidden" class="form-control" name="travel_image" value="{ $data['gambar'] }}">
+                <input type="hidden" class="form-control" name="travel_city" value="{{ ucfirst($city) }}">
 
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name" name="name">
+                @if(!empty($user->name))
+                    <input type="text" class="form-control" readonly placeholder="Your Name" name="name" value="{{ $user->name }}">
+                @else
+                    <input type="text" class="form-control" placeholder="Your Name" name="name">
+                @endif
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" placeholder="Your Email" name="email">
+                @if(!empty($user->email))
+                    <input type="email" class="form-control" readonly placeholder="Your Email" name="email" value="{{ $user->email }}">                
+                @else
+                    <input type="email" class="form-control" placeholder="Your Email" name="email">
+                @endif
               </div>
               <div class="form-group">
-                <input type="phone" class="form-control" placeholder="Your Phone" name="phone">
+                @if(!empty($user->email))
+                    <input type="phone" class="form-control" readonly placeholder="Your Phone" name="phone" value="{{ $user->phone }}">
+                @else
+                    <input type="phone" class="form-control" placeholder="Your Phone" name="phone">
+                @endif
               </div>
               <div class="form-group">
                 <input type="number" class="form-control" placeholder="Number of Participants" name="participant_count">

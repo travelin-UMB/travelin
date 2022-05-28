@@ -67,14 +67,28 @@
                                                 <td>{{ $detail['participant_count'] }}</td>
                                             </tr>
                                             <tr>
+                                                <td>Total Price</td>
+                                                <td>:</td>
+                                                <td>@currency($detail['travel_price'] * $detail['participant_count'])</td>
+                                            </tr>
+                                            <tr>
                                                 <td>Status</td>
                                                 <td>:</td>
                                                 <td>
                                                     @if($detail->status == 0)
-                                                        <span class="badge bg-warning text-white">Pending</span>
+                                                        <span class="badge bg-secondary text-white">Pending Payment</span>
                                                     @endif
                                                     @if($detail->status == 1)
-                                                        <span class="badge bg-success text-white">Active</span>
+                                                        <span class="badge bg-warning text-white">Waiting Confirmation</span>
+                                                    @endif
+                                                    @if($detail->status == 2)
+                                                        <span class="badge bg-success text-white">Package Active</span>
+                                                    @endif
+                                                    @if($detail->status == 3)
+                                                        <span class="badge bg-light text-white">Package Non Active</span>
+                                                    @endif
+                                                    @if($detail->status == 4)
+                                                        <span class="badge bg-danger text-white">Package Rejected</span>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -114,11 +128,30 @@
             <div class="row block-9 mb-5">
 
           <div class="col-md-8 pr-md-5 mb-5">
-            <h2 class="mb-4"><strong>Process Payment</strong></h2>
+            <h2 class="mb-4">
+                <strong>
+                @if($detail->status == 0 || $detail->status == 5)
+                    Process Payment
+                @else
+                    Detail Data Payment
+                @endif
+                </strong>
+            </h2>
+
+            <div class="alert alert-warning" role="alert">
+                Please make payment to :
+                <ul>
+                    <li>Bank : BCA</li>
+                    <li>Account Number : 5010458279</li>
+                    <li>Account Holder  : Fajar Subeki</li>
+                    <li>Nominal Transfer  : @currency($detail['travel_price'] * $detail['participant_count'])</li>
+                </ul>
+                <i style="color: red;">Make payment before 1 hour and upload  payment slip in form below for package transactions remain active!</i>
+            </div>
 
             <form action="{{ route('process_payment') }}" method="post" enctype="multipart/form-data">
             @csrf
-                <input type="text" class="form-control" name="id" value="{{$detail['id']}}">
+                <input type="hidden" class="form-control" name="id" value="{{$detail['id']}}">
 
               <div class="form-group">
                 <label>Your Name</label>
@@ -133,14 +166,29 @@
                 <input type="phone" class="form-control" readonly placeholder="Your Phone" name="phone" value="{{ $detail['user']->phone }}">
             </div>
             <div class="form-group">
-            <label>Payment Attachment</label>
-                <input type="file" class="form-control" name="payment_attachment">
-
+                @if($detail->status == 0 || $detail->status == 5)
+                    <textarea id="" cols="30" rows="7" class="form-control" required name="note">{{ $detail['note'] }}</textarea>
+                @else
+                    <textarea id="" cols="30" rows="7" class="form-control" readonly placeholder="{{ $detail['note'] }}" name="note"></textarea>
+                @endif
+              </div>
+            <div class="form-group">
+                <label>Payment Slip</label>
+                @if(!empty($detail['payment_slip']))
+                <div class="col-md-12">
+                    <img src="{{ asset('storage/images/'. $detail->payment_slip) }}" style="width: 500px;" class="img img-flud"/>                    
+                </div>
+                @else
+                    <input type="file" accept="image/jpeg,image/jpg,image/png,application/pdf" class="form-control" required name="payment_attachment">
+                @endif
             </div>
-              
+            
+              @if($detail->status == 0 || $detail->status == 5)
               <div class="form-group">
                 <input type="submit" value="Send Payment Attachment" class="btn btn-primary btn-md">
               </div>
+              @endif
+             
             </form>
           
           </div>

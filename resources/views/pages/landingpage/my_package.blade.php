@@ -50,11 +50,25 @@
                                         </p>
                                         <p class="days">
                                             <span>{{ date_format($item->created_at,'d M Y') }}</span>
-                                            <span class="badge rounded-pill bg-info text-white float-right mt-1">Active</span>
+                                                    @if($item->status == 0)
+                                                    <span class="badge bg-secondary text-white float-right">Pending Payment</span>
+                                                    @endif
+                                                    @if($item->status == 1)
+                                                        <span class="badge bg-warning text-white float-right">Waiting Confirmation</span>
+                                                    @endif
+                                                    @if($item->status == 2)
+                                                        <span class="badge bg-success text-white float-right">Package Active</span>
+                                                    @endif
+                                                    @if($item->status == 3)
+                                                        <span class="badge bg-light text-white float-right">Package Non Active</span>
+                                                    @endif
+                                                    @if($item->status == 4)
+                                                        <span class="badge bg-danger text-white float-right">Package Rejected</span>
+                                                    @endif
                                         </p>
                                         <hr>
                                         <p class="bottom-area d-flex">
-                                            <span><i class="icon-map-o"></i> Yogyakarta</span>
+                                            <span><i class="icon-map-o"></i> {{ $item->travel_city }}</span>
                                             <span class="ml-auto"><a href="{{ route('my_package_detail', ['id'=>$item['id'], 'url'=>$item['travel_url']]) }}">Discover</a></span>
                                         </p>
                                     </div>
