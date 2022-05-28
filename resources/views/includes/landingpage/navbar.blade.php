@@ -24,7 +24,7 @@
                 @endguest
                 @auth
                     <li class="nav-item">
-                        <a href="{{ url('my_package') }}" class="nav-link">My Packages</a>
+                        <a href="{{ route('my_package', ['id'=>1]) }}" class="nav-link">My Packages</a>
                     </li>
                     <form action="{{ url('logout') }}" method="POST">
                         @csrf

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use voku\helper\HtmlDomParser;
+use App\Models\Reservation;
 
 class LandingPageController extends Controller
 {
@@ -267,8 +268,12 @@ class LandingPageController extends Controller
         
     }
 
-    public function my_package(Request $request){
-        return view('pages.landingpage.my_package');
+    public function my_package($id){
+
+        $datas = Reservation::where('users_id', $id)->get();
+        $params['datas'] = $datas;
+        return view('pages.landingpage.my_package')->with($params);
+
     }
 
     public function package_detail($url, $url_sub){
@@ -338,5 +343,100 @@ class LandingPageController extends Controller
             'paket_url' => $url_paket,
         ]);
     }
+
+    public function my_package_detail($id, $url, $url_sub){
+
+        $url_dom = "https://salsawisata.com/" . $url . "/" . $url_sub;
+        $html = file_get_contents($url_dom);
+        $xpath_doc = new \DOMDocument();
+        libxml_use_internal_errors(TRUE);
+        $url_paket = $url . "/" . $url_sub;
+
+        $detail = Reservation::where('id', $id)->first();
+
+        if(!empty($html)){
+            $xpath_doc -> loadHTML($html);
+            libxml_clear_errors();
+            $xpath = new \DOMXPath($xpath_doc);
+
+            $cariJudul = $xpath->query('/html/body/div[1]/div[2]/main/div/section/div/div/div[3]/div/div[1]/div/div/div[1]/div/div[1]/h4');
+            $cariDeskripsi = $xpath->query('/html/body/div[1]/div[2]/main/div/section/div/div/div[3]/div/div[1]/div/div/div[2]/div/div[2]/div[2]/div[2]/ul');
+            $cariItenary = $xpath->query('/html/body/div[1]/div[2]/main/div/section/div/div/div[3]/div/div[1]/div/div/div[2]/div/div[2]/div[2]/div[6]/ul');
+            $cariHarga = $xpath->query('/html/body/div[1]/div[2]/main/div/section/div/div/div[3]/div/div[1]/div/div/div[2]/div/div[1]/h6');
+            $cariGambar = $xpath->query('/html/body/div[1]/div[2]/main/div/section/div/div/div[3]/div/div[1]/div/div/div[1]/div/div[2]/span/img/@src');
+            $cariUrl = $xpath->query('/html/body/div[1]/div[1]/section/div/div/div[1]/div/ul/li/a/@href');
+
+            if($cariJudul -> length > 0){
+                foreach($cariJudul as $judul){
+                    $cariJudulList[] = array('judul' => $judul->nodeValue);
+                }
+                // foreach($cariSubJudul as $subjudul){
+                //     $cariSubJudulList[] = array('subjudul' => $subjudul -> nodeValue);
+                // }
+                foreach($cariDeskripsi as $deskripsi){
+                    $cariDeskripsiList[] = array('deskripsi' => $deskripsi -> nodeValue);
+                }
+                foreach($cariItenary as $itenary){
+                    $cariItenaryList[] = array('itenary' => $itenary -> nodeValue);
+                }
+                foreach($cariHarga as $harga){
+                    $harga_format = $harga -> nodeValue;
+                    $harga_format_rv = str_replace('Harga Mulai : Rp ', '', $harga_format);
+                    $harga_format_rv_dot = str_replace('.', '', $harga_format_rv);
+                    $cariHargaList[] = array('harga' => $harga -> nodeValue);
+                    $cariHargaFormatList[] = array('harga_format' => $harga_format_rv_dot);
+                }
+                foreach($cariGambar as $gambar){
+                    $cariGambarList[] = array('gambar' => $gambar -> nodeValue);
+                }
+                $i = 0;
+                foreach($cariJudul as $data){
+                    $cariDataList[] = array(
+                        'judul' => $cariJudulList[$i]["judul"],
+                        'deskripsi' => $cariDeskripsiList[$i]["deskripsi"],
+                        'itenary' => $cariItenaryList[$i]["itenary"],
+                        'harga' => $cariHargaList[$i]["harga"],
+                        'harga_format' => $cariHargaFormatList[$i]["harga_format"],
+                        'gambar' => $cariGambarList[$i]["gambar"],
+                    );
+                $i++;
+                }
+                $data = $cariDataList;
+
+            }
+            
+        }
+
+        return view('pages.landingpage.detail_my_package',[
+            'data' => $data[0],
+            'detail' => $detail,
+            'paket_url' => $url_paket,
+        ]);
+    }
+
+    public function processPayment(Request $request)
+    {
+
+        $data = Reservation::where('id', $request->id)->first();
+
+        if(request()->hasFile('payment_attachment')){
+            $file = $request->file('payment_attachment');
+            $fileName = md5(rand() . $file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+            $path = public_path('/storage/images/');
+            $file->move($path, $fileName);
+            
+            // $data->payment_attachment = $fileName;
+            $data->note = "mantap";
+
+
+        }
+
+        $data->save();
+
+        return redirect()->route('my_package', 1);
+
+
+    }
+    
 
 }
