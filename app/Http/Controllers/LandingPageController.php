@@ -165,6 +165,8 @@ class LandingPageController extends Controller
 
         $city_replace = str_replace('paket-wisata-', '', $url);
 
+        $data = [];
+
         if(!empty($html)){
             $xpath_doc -> loadHTML($html);
             libxml_clear_errors();

@@ -35,12 +35,3 @@
 </nav>
 <!-- END nav -->
 <script src="{{ url('landingpage/js/jquery.min.js') }}"></script>
-
-<script>
-
-$(".nav .nav-link").on("click", function(){
-
-   $(".nav").find(".active").removeClass("active");
-   $(this).addClass("active");
-});
-</script>

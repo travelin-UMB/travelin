@@ -115,13 +115,13 @@
                 @endif
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" placeholder="Number of Participants" name="participant_count">
+                <input type="number" class="form-control" required placeholder="Number of Participants" name="participant_count">
               </div>
               <div class="form-group">
-                <input type="date" class="form-control" placeholder="Date Travel" name="travel_date">
+                <input type="date" class="form-control" required placeholder="Date Travel" name="travel_date">
                 </div>
               <div class="form-group">
-                <textarea id="" cols="30" rows="7" class="form-control" placeholder="Note" name="note"></textarea>
+                <textarea id="" cols="30" rows="7" required class="form-control" placeholder="Note" name="note"></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="Submit Ticket" class="btn btn-primary py-3 px-5">
