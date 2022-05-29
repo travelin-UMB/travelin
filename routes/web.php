@@ -9,6 +9,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ScrapeController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GuestController;
 
 
 /*
@@ -22,33 +23,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', 'HomeController@index')
-//     ->name('home');
-
-// Route::get('/detail/{slug}', 'DetailController@index')
-//     ->name('detail');
-
-// Route::post('/checkout/{id}', 'CheckoutController@process')
-//     ->name('checkout_process')
-//     ->middleware(['auth','verified']);
-
-// Route::get('/checkout/{id}', 'CheckoutController@index')
-//     ->name('checkout')
-//     ->middleware(['auth','verified']);
-
-// Route::post('/checkout/create/{detail_id}', 'CheckoutController@create')
-//     ->name('checkout-create')
-//     ->middleware(['auth','verified']);
-
-// Route::get('/checkout/remove/{detail_id}', 'CheckoutController@remove')
-//     ->name('checkout-remove')
-//     ->middleware(['auth','verified']);
-
-// Route::get('/checkout/confirm/{id}', 'CheckoutController@success')
-//     ->name('checkout-success')
-//     ->middleware(['auth','verified']);
-
-
 Route::prefix('admin')
     ->middleware(['auth','admin'])
     ->group(function() {
@@ -59,6 +33,9 @@ Route::prefix('admin')
         Route::resource('user', UserController::class);
         Route::resource('gallery', GalleryController::class);
         Route::resource('transaction', TransactionsController::class);
+        Route::resource('guest', GuestController::class);
+        
+
         Route::get('reservation', [ReservationController::class, 'index'])->name('reservation.index');
         Route::post('reservation/create', [ReservationController::class, 'create'])->name('reservation.create');
         Route::get('reservation/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
@@ -66,7 +43,7 @@ Route::prefix('admin')
     });
 Auth::routes(['verify' => true]);
 
-Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/', [LandingPageController::class, 'index'])->name('home');
 Route::get('featured_destination', [LandingPageController::class, 'city']);
 Route::get('our_package/{url}', [LandingPageController::class, 'our_package'])->name('our_package');
 Route::get('my_package/{id}', [LandingPageController::class, 'my_package'])->name('my_package');
@@ -77,5 +54,5 @@ Route::get('detail_my_package/{id}/{url}/{url_sub?}', [LandingPageController::cl
 Route::get('/scrape', [ScrapeController::class, 'scrape']);
 
 Route::post('reservation', [ReservationController::class, 'store'])->name('reservation');
-Route::post('process_guestbook', [LandingPageController::class, 'processGuestBook'])->name('process_guestbook');
+Route::post('process_guestbook', [GuestController::class, 'store'])->name('process_guestbook');
 Route::post('process_payment', [LandingPageController::class, 'processPayment'])->name('process_payment');

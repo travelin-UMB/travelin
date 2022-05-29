@@ -153,6 +153,15 @@
                 </div>
             </div>
             <div class="row justify-content-center">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+              @endif
             <div class="col-md-6 pr-md-5">
                 <form action="{{ route('process_guestbook') }}" method="post">
                     @csrf
@@ -178,14 +187,15 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" required name="phone" placeholder="Subject">
+                        <input type="text" class="form-control" required name="subject" placeholder="Subject">
                     </div>
                     <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" required name="message" class="form-control" placeholder="Message"></textarea>
+                        <textarea id="" cols="30" rows="7" required name="message" class="form-control" placeholder="Message"></textarea>
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-                    </div>
+                
+                    <button type="submit" class="btn btn-primary py-3 px-5">
+                        Simpan
+                    </button>
                 </form>      
             </div>
             </div>
