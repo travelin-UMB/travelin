@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Travel_packages;
-use App\Models\Transactions;
+use App\Models\travel_packages;
+use App\Models\transactions;
 
 class DashboardController extends Controller
 {
