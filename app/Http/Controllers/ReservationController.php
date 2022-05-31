@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\reservation;
+use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
