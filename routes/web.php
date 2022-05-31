@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\TravelPackagesController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\ScrapeController;
+// use App\Http\Controllers\ScrapeController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuestController;
@@ -29,17 +26,20 @@ Route::prefix('admin')
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
 
-        Route::resource('travel-package', TravelPackagesController::class);
+        // Route::resource('travel-package', TravelPackagesController::class);
         Route::resource('user', UserController::class);
-        Route::resource('gallery', GalleryController::class);
-        Route::resource('transaction', TransactionsController::class);
+        // Route::resource('gallery', GalleryController::class);
+        // Route::resource('transaction', TransactionsController::class);
         Route::resource('guest', GuestController::class);
         
 
-        Route::get('reservation', [ReservationController::class, 'index'])->name('reservation.index');
-        Route::post('reservation/create', [ReservationController::class, 'create'])->name('reservation.create');
-        Route::get('reservation/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
-        Route::delete('reservation', [ReservationController::class, 'destroy'])->name('reservation.destroy');
+        Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+        Route::post('/reservation/create', [ReservationController::class, 'create'])->name('reservation.create');
+        
+        Route::get('/reservation/edit/{id}', [ReservationController::class, 'edit'])->name('reservation.edit');
+        Route::put('/reservation/update/{id}', [ReservationController::class, 'update'])->name('reservation.update');
+
+        Route::delete('/reservation/{id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
     });
 Auth::routes(['verify' => true]);
 
@@ -51,7 +51,7 @@ Route::get('detail/{url}/{url_sub?}', [LandingPageController::class, 'package_de
 Route::get('detail_my_package/{id}/{url}/{url_sub?}', [LandingPageController::class, 'my_package_detail'])->name('my_package_detail');
 
 
-Route::get('/scrape', [ScrapeController::class, 'scrape']);
+// Route::get('/scrape', [ScrapeController::class, 'scrape']);
 
 Route::post('reservation', [ReservationController::class, 'store'])->name('reservation');
 Route::post('process_guestbook', [GuestController::class, 'store'])->name('process_guestbook');

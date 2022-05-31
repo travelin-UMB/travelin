@@ -21,11 +21,10 @@
                                 <th>Travel Paket</th>
                                 <th>Participant</th>
                                 <th>Price</th>
-                                <th>URL</th>
                                 <th>Note</th>
                                 <th>Travel Date</th>
                                 <th>Status</th>
-                                <th>Bukti Bayar</th>
+                                <th>Payment Slip</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -39,9 +38,11 @@
                                     <td>{{ $item->travel_paket}}</td>
                                     <td>{{ $item->participant_count }}</td>
                                     <td>${{ $item->travel_price }}</td>
-                                    <td>{{ $item->travel_url }}</td>
                                     <td>{{ $item->note }}</td>
                                     <td>{{ $item->travel_date }}</td>
+                                    <td>
+                                        <img src="{{ asset('storage/images/'.$item->payment_slip) }}" width="50%">
+                                    </td>
                                     <td>
                                         @if($item->status == 0)
                                         <span class="badge bg-secondary text-white float-right">Pending Payment</span>
@@ -59,8 +60,10 @@
                                             <span class="badge bg-danger text-white float-right">Package Rejected</span>
                                         @endif
                                     </td>
-                                    <td>{{ $item->buktibayar }}</td>
                                     <td>
+                                        <a href="{{ route('reservation.edit', $item->id) }}" class="btn btn-success">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
                                         <a href="{{ route('reservation.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>

@@ -98,9 +98,15 @@ class ReservationController extends Controller
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reservation $reservation)
+    public function edit($id)
     {
-        //
+        // $item = Reservation::findOrFail($id);
+        $item = Reservation::with([
+            'user'
+        ])->findOrFail($id);
+        return view('pages.admin.reservation.edit',[
+            'item' => $item
+        ]);
     }
 
     /**
@@ -110,9 +116,14 @@ class ReservationController extends Controller
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $item = Reservation::findOrFail($id);
+        $item->update($data);
+
+        return redirect()->route('reservation.index');
     }
 
     /**
@@ -121,8 +132,11 @@ class ReservationController extends Controller
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservation $reservation)
+    public function destroy($id)
     {
-        //
+        $item = Reservation::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('reservation.index');
     }
 }
