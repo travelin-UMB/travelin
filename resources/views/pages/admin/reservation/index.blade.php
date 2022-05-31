@@ -23,8 +23,8 @@
                                 <th>Price</th>
                                 <th>Note</th>
                                 <th>Travel Date</th>
-                                <th>Status</th>
                                 <th>Payment Slip</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
