@@ -42,7 +42,23 @@
                                     <td>{{ $item->travel_url }}</td>
                                     <td>{{ $item->note }}</td>
                                     <td>{{ $item->travel_date }}</td>
-                                    <td>{{ $item->status }}</td>
+                                    <td>
+                                        @if($item->status == 0)
+                                        <span class="badge bg-secondary text-white float-right">Pending Payment</span>
+                                        @endif
+                                        @if($item->status == 1)
+                                            <span class="badge bg-warning text-white float-right">Waiting Confirmation</span>
+                                        @endif
+                                        @if($item->status == 2)
+                                            <span class="badge bg-success text-white float-right">Package Active</span>
+                                        @endif
+                                        @if($item->status == 3)
+                                            <span class="badge bg-light text-white float-right">Package Non Active</span>
+                                        @endif
+                                        @if($item->status == 4)
+                                            <span class="badge bg-danger text-white float-right">Package Rejected</span>
+                                        @endif
+                                    </td>
                                     <td>{{ $item->buktibayar }}</td>
                                     <td>
                                         <a href="{{ route('reservation.edit', $item->id) }}" class="btn btn-info">
