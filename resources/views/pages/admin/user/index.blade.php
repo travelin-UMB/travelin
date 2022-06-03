@@ -15,7 +15,7 @@
       <div class="row">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" width="100%" cellspacing="0">
+            <table id="user" class="table table-bordered table-hover">
               <thead>
                 <tr>
                   <th>No.</th>  
@@ -64,4 +64,9 @@
 
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('js')
+  <script>
+    $('#user').DataTable();
+  </script>
 @endsection
