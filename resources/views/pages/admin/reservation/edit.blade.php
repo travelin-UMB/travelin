@@ -55,11 +55,11 @@
             <div class="form-group">
                 <label for="status">Status</label><br>
                 <select name="status">
-                    <option value="1">Pending Payment</option>
-                    <option value="2">Waiting Confirmation</option>
-                    <option value="3">Package Active</option>
-                    <option value="4">Package Non Active</option>
-                    <option value="5">Package Rejected</option>
+                    <option value="0">Pending Payment</option>
+                    <option value="1">Waiting Confirmation</option>
+                    <option value="2">Package Active</option>
+                    <option value="3">Package Non Active</option>
+                    <option value="4">Package Rejected</option>
                 </select>
             </div>
             <div class="form-group">
