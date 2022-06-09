@@ -7,6 +7,8 @@ use GuzzleHttp\Client;
 use voku\helper\HtmlDomParser;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\PaymentEmail;
+
 
 class LandingPageController extends Controller
 {
@@ -447,6 +449,9 @@ class LandingPageController extends Controller
         $data->save();
 
         $user = Auth::user();
+        $emails = [$user->email, "fajarsubeki06@gmail.com"];
+
+        \Mail::to($emails)->send(new PaymentEmail($data));
 
         $returnUrl = 'my_package/' . $user->id; 
 

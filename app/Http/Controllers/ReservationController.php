@@ -6,6 +6,8 @@ use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\PaymentEmail;
+
 use Auth;
 
 
@@ -75,6 +77,10 @@ class ReservationController extends Controller
             'travel_image' => $request->travel_image,
             'travel_city' => $request->travel_city
         ]);
+
+        $emails = [$request->email, "fajarsubeki06@gmail.com"];
+
+        \Mail::to($emails)->send(new PaymentEmail($reservation));
 
         $returnUrl = 'detail_my_package/' . $reservation->id . '/' . $request->travel_url; 
 
